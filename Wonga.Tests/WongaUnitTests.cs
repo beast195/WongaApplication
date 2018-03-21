@@ -67,17 +67,17 @@ namespace Wonga.Tests
             _messageService.CreateQueue();
             _mockConsole.Verify(m => m.WriteLine(It.Is<string>(c => c == "Queue Created.")), Times.Once);
             _messageService.SendMessage(_messageModel);
-            _mockConsole.Verify(m => m.WriteLine(It.Is<string>(c => c.Contains("Message Sent"))));
+            _mockConsole.Verify(m => m.WriteLine(It.Is<string>(c => c.Contains("Message Sent"))), Times.Once);
         }
 
         [TestMethod]
         public void ReceiveTest()
         {
             _messageService.CreateQueue();
-            _mockConsole.Verify(m => m.WriteLine(It.Is<string>(c => c == "Queue Created.")));
+            _mockConsole.Verify(m => m.WriteLine(It.Is<string>(c => c == "Queue Created.")), Times.Once);
             _messageService.CreateConsumer();
             _messageService.Listen();
-            _mockConsole.Verify(m => m.WriteLine(It.Is<string>(c => c.Contains("Tag"))));
+            _mockConsole.Verify(m => m.WriteLine(It.Is<string>(c => c.Contains("Tag"))), Times.Once);
         }
     }
 }
